@@ -1,7 +1,7 @@
 {
-  "name": "moodle-availability_profile-form",
+  "name": "moodle-availability_wb_profile-form",
   "builds": {
-    "moodle-availability_profile-form": {
+    "moodle-availability_wb_profile-form": {
       "jsfiles": [
         "form.js"
       ]

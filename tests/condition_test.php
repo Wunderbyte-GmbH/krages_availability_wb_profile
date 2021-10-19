@@ -17,23 +17,23 @@
 /**
  * Unit tests for the user profile condition.
  *
- * @package availability_profile
+ * @package availability_wb_profile
  * @copyright 2014 The Open University
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-use availability_profile\condition;
+use availability_wb_profile\condition;
 
 /**
  * Unit tests for the user profile condition.
  *
- * @package availability_profile
+ * @package availability_wb_profile
  * @copyright 2014 The Open University
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class availability_profile_condition_testcase extends advanced_testcase {
+class availability_wb_profile_condition_testcase extends advanced_testcase {
     /** @var profile_define_text Profile field for testing */
     protected $profilefield;
 
@@ -60,7 +60,7 @@ class availability_profile_condition_testcase extends advanced_testcase {
                 array('shortname' => 'frogtype'));
 
         // Clear static cache.
-        \availability_profile\condition::wipe_static_cache();
+        \availability_wb_profile\condition::wipe_static_cache();
 
         // Load the mock info class so that it can be used.
         require_once($CFG->dirroot . '/availability/tests/fixtures/mock_info.php');

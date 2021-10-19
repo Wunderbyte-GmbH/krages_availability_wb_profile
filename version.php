@@ -17,13 +17,13 @@
 /**
  * Version info.
  *
- * @package availability_profile
+ * @package availability_wb_profile
  * @copyright 2014 The Open University
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2020061502;
+$plugin->version = 2021101900;
 $plugin->requires = 2020060900;
-$plugin->component = 'availability_profile';
+$plugin->component = 'availability_wb_profile';

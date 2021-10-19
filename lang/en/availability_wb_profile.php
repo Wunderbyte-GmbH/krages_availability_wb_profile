@@ -17,12 +17,12 @@
 /**
  * Language strings.
  *
- * @package availability_profile
+ * @package availability_wb_profile
  * @copyright 2014 The Open University
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['conditiontitle'] = 'User profile field';
+$string['conditiontitle'] = 'User profile field (wunderbyte)';
 $string['description'] = 'Control access based on fields within the student\'s profile.';
 $string['error_selectfield'] = 'You must select a profile field.';
 $string['error_setvalue'] = 'You must type a value.';
@@ -41,7 +41,7 @@ $string['requires_notstartswith'] = 'Your <strong>{$a->field}</strong> does not 
 $string['requires_startswith'] = 'Your <strong>{$a->field}</strong> starts with <strong>{$a->value}</strong>';
 $string['requires_isinlist'] = 'Your <strong>{$a->field}</strong> is in list <strong>{$a->value}</strong>';
 $string['missing'] = '(Missing custom field: {$a})';
-$string['title'] = 'User profile';
+$string['title'] = 'User profile extended';
 $string['op_contains'] = 'contains';
 $string['op_doesnotcontain'] = 'doesn\'t contain';
 $string['op_endswith'] = 'ends with';

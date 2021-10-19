@@ -1,5 +1,5 @@
-@availability @availability_profile
-Feature: availability_profile
+@availability @availability_wb_profile
+Feature: availability_wb_profile
   In order to control student access to activities
   As a teacher
   I need to set profile conditions which prevent student access

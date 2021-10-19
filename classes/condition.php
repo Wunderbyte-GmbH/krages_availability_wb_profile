@@ -17,19 +17,19 @@
 /**
  * User profile field condition.
  *
- * @package availability_profile
+ * @package availability_wb_profile
  * @copyright 2014 The Open University
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace availability_profile;
+namespace availability_wb_profile;
 
 defined('MOODLE_INTERNAL') || die();
 
 /**
  * User profile field condition.
  *
- * @package availability_profile
+ * @package availability_wb_profile
  * @copyright 2014 The Open University
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -196,7 +196,7 @@ class condition extends \core_availability\condition {
             if (array_key_exists($this->customfield, $customfields)) {
                 $translatedfieldname = $customfields[$this->customfield]->name;
             } else {
-                $translatedfieldname = get_string('missing', 'availability_profile',
+                $translatedfieldname = get_string('missing', 'availability_wb_profile',
                         $this->customfield);
             }
         } else {
@@ -241,7 +241,7 @@ class condition extends \core_availability\condition {
         } else {
             $opname = $this->operator;
         }
-        return get_string('requires_' . $opname, 'availability_profile', $a);
+        return get_string('requires_' . $opname, 'availability_wb_profile', $a);
     }
 
     protected function get_debug_string() {

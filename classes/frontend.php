@@ -17,19 +17,19 @@
 /**
  * Front-end class.
  *
- * @package availability_profile
+ * @package availability_wb_profile
  * @copyright 2014 The Open University
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace availability_profile;
+namespace availability_wb_profile;
 
 defined('MOODLE_INTERNAL') || die();
 
 /**
  * Front-end class.
  *
- * @package availability_profile
+ * @package availability_wb_profile
  * @copyright 2014 The Open University
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

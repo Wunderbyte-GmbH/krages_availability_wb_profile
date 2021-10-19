@@ -1,5 +1,5 @@
 {
-  "moodle-availability_profile-form": {
+  "moodle-availability_wb_profile-form": {
     "requires": [
         "base",
         "node",
