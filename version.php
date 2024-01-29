@@ -24,6 +24,6 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2021101900;
+$plugin->version = 2024012900;
 $plugin->requires = 2020060900;
 $plugin->component = 'availability_wb_profile';
