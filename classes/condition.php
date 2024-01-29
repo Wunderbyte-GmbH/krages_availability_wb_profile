@@ -61,8 +61,11 @@ class condition extends \core_availability\condition {
     /** @var string Operator: field is greater */
     const OP_IS_GREATER = 'isgreater';
 
-            /** @var string Operator: field is smaller */
+    /** @var string Operator: field is smaller */
     const OP_IS_SMALLER = 'issmaller';
+
+    /** @var string Operator: field is smaller */
+    const OP_COMPARESTOTIMESTRING = 'comparestotimestring';
 
     /** @var array|null Array of custom profile fields (static cache within request) */
     protected static $customprofilefields = null;
@@ -98,6 +101,7 @@ class condition extends \core_availability\condition {
                 self::OP_IS_IN_LIST,
                 self::OP_IS_GREATER,
                 self::OP_IS_SMALLER,
+                self::OP_COMPARESTOTIMESTRING,
             ], true)) {
             $this->operator = $structure->op;
         } else {
@@ -256,6 +260,9 @@ class condition extends \core_availability\condition {
                 case self::OP_IS_SMALLER:
                     $opname = 'issmaller';
                     break;
+                case self::OP_COMPARESTOTIMESTRING:
+                    $opname = 'iscomparedtotimestring';
+                    break;
                 default:
                     throw new \coding_exception('Unexpected operator: ' . $this->operator);
             }
@@ -353,15 +360,35 @@ class condition extends \core_availability\condition {
                 }
                 break;
             case self::OP_IS_GREATER:
-                if ($uservalue > $value) {
-                    $fieldconditionmet = false;
-                }
-                break;
-            case self::OP_IS_SMALLER:
                 if ($uservalue < $value) {
                     $fieldconditionmet = false;
                 }
                 break;
+            case self::OP_IS_SMALLER:
+                if ($uservalue > $value) {
+                    $fieldconditionmet = false;
+                }
+                break;
+            case self::OP_COMPARESTOTIMESTRING:
+
+                list($operator, $string) = explode(' ', $value, 2);
+                $value = strtotime($string);
+
+                switch ($operator) {
+                    case '<':
+                        if ($uservalue > $value) {
+                            $fieldconditionmet = false;
+                        }
+                    break;
+                    case '>':
+                        if ($uservalue < $value) {
+                            $fieldconditionmet = false;
+                        }
+                    break;
+                    default:
+                        $fieldconditionmet = false;
+                    break;
+                }
         }
         return $fieldconditionmet;
     }
@@ -629,6 +656,24 @@ class condition extends \core_availability\condition {
                     $sql = "$field < " . self::unique_sql_parameter($params, $this->value);
                 }
                 break;
+            case self::OP_COMPARESTOTIMESTRING:
+                if ($istext) {
+
+                    list($operator, $string) = explode(' ', $this->value, 2);
+                    $uservalue = strtotime($string);
+
+                    switch ($operator) {
+                        case '<':
+                            $sql = "$field < " . self::unique_sql_parameter($params, $uservalue);
+                        break;
+                        case '>':
+                            $sql = "$field > " . self::unique_sql_parameter($params, $uservalue);
+                        break;
+                        default:
+                            $sql = '';
+                        break;
+                    }
+                }
         }
         return array($sql, $params);
     }

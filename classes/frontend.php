@@ -37,7 +37,7 @@ class frontend extends \core_availability\frontend {
     protected function get_javascript_strings() {
         return array('op_contains', 'op_doesnotcontain', 'op_endswith', 'op_isempty',
                 'op_isequalto', 'op_isnotempty', 'op_startswith', 'conditiontitle',
-                'label_operator', 'label_value','op_isinlist','op_isgreater','op_issmaller');
+                'label_operator', 'label_value','op_isinlist','op_isgreater','op_issmaller','op_comparestotimestring');
     }
 
     protected function get_javascript_init_params($course, \cm_info $cm = null,
