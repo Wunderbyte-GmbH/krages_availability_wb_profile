@@ -32,6 +32,7 @@ M.availability_wb_profile.form.initInner = function(standardFields, customFields
 };
 
 M.availability_wb_profile.form.getNode = function(json) {
+
     // Create HTML structure.
     var html = '<span class="availability-group"><label><span class="p-r-1">' +
             M.util.get_string('conditiontitle', 'availability_wb_profile') + '</span> ' +
@@ -52,7 +53,7 @@ M.availability_wb_profile.form.getNode = function(json) {
             ' </span><select name="op" title="' + M.util.get_string('label_operator', 'availability_wb_profile') + '"' +
                      ' class="custom-select">';
     var operators = ['isequalto', 'contains', 'doesnotcontain', 'startswith', 'endswith',
-            'isempty', 'isnotempty','isinlist'];
+            'isempty', 'isnotempty','isinlist','isgreater','issmaller'];
     for (i = 0; i < operators.length; i++) {
         html += '<option value="' + operators[i] + '">' +
                 M.util.get_string('op_' + operators[i], 'availability_wb_profile') + '</option>';

@@ -620,12 +620,14 @@ class condition extends \core_availability\condition {
                 }
                 break;
             case self::OP_IS_GREATER:
-                if ($istext) {
-                    $sql = "$field > " . self::unique_sql_parameter($params, $value);
+                if (!$istext) {
+                    $sql = "$field > " . self::unique_sql_parameter($params, $this->value);
+                }
                 break;
             case self::OP_IS_SMALLER:
-                if ($istext) {
-                    $sql = "$field < " . self::unique_sql_parameter($params, $value);
+                if (!$istext) {
+                    $sql = "$field < " . self::unique_sql_parameter($params, $this->value);
+                }
                 break;
         }
         return array($sql, $params);
