@@ -50,4 +50,6 @@ $string['op_isequalto'] = 'is equal to';
 $string['op_isnotempty'] = 'is not empty';
 $string['op_startswith'] = 'starts__with';
 $string['op_isinlist'] = 'is in list';
+$string['op_greater'] = 'is greater';
+$string['op_smaller'] = 'is smaller';
 $string['privacy:metadata'] = 'The Restriction by profile plugin does not store any personal data.';

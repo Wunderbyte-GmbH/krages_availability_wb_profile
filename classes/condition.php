@@ -58,6 +58,12 @@ class condition extends \core_availability\condition {
     /** @var string Operator: field is not empty */
     const OP_IS_IN_LIST = 'isinlist';
 
+    /** @var string Operator: field is greater */
+    const OP_IS_GREATER = 'isgreater';
+
+            /** @var string Operator: field is smaller */
+    const OP_IS_SMALLER = 'issmaller';
+
     /** @var array|null Array of custom profile fields (static cache within request) */
     protected static $customprofilefields = null;
 
@@ -81,9 +87,18 @@ class condition extends \core_availability\condition {
      */
     public function __construct($structure) {
         // Get operator.
-        if (isset($structure->op) && in_array($structure->op, array(self::OP_CONTAINS,
-                self::OP_DOES_NOT_CONTAIN, self::OP_IS_EQUAL_TO, self::OP_STARTS_WITH,
-                self::OP_ENDS_WITH, self::OP_IS_EMPTY, self::OP_IS_NOT_EMPTY, self::OP_IS_IN_LIST), true)) {
+        if (isset($structure->op) && in_array($structure->op, [
+                self::OP_CONTAINS,
+                self::OP_DOES_NOT_CONTAIN,
+                self::OP_IS_EQUAL_TO,
+                self::OP_STARTS_WITH,
+                self::OP_ENDS_WITH,
+                self::OP_IS_EMPTY,
+                self::OP_IS_NOT_EMPTY,
+                self::OP_IS_IN_LIST,
+                self::OP_IS_GREATER,
+                self::OP_IS_SMALLER,
+            ], true)) {
             $this->operator = $structure->op;
         } else {
             throw new \coding_exception('Missing or invalid ->op for profile condition');
@@ -235,6 +250,12 @@ class condition extends \core_availability\condition {
                 case self::OP_IS_IN_LIST:
                     $opname = 'isinlist';
                     break;
+                case self::OP_IS_GREATER:
+                    $opname = 'isgeater';
+                    break;
+                case self::OP_IS_SMALLER:
+                    $opname = 'issmaller';
+                    break;
                 default:
                     throw new \coding_exception('Unexpected operator: ' . $this->operator);
             }
@@ -329,7 +350,17 @@ class condition extends \core_availability\condition {
                     $fieldconditionmet = in_array($uservalue, $list);
                 } else {
                     $fieldconditionmet = false;
-                }                               
+                }
+                break;
+            case self::OP_IS_GREATER:
+                if ($uservalue > $value) {
+                    $fieldconditionmet = false;
+                }
+                break;
+            case self::OP_IS_SMALLER:
+                if ($uservalue < $value) {
+                    $fieldconditionmet = false;
+                }
                 break;
         }
         return $fieldconditionmet;
@@ -531,6 +562,7 @@ class condition extends \core_availability\condition {
         }
 
         $params = array();
+
         switch($this->operator) {
             case self::OP_CONTAINS:
                 $sql = $DB->sql_like($field, self::unique_sql_parameter(
@@ -586,6 +618,14 @@ class condition extends \core_availability\condition {
                 } else {
                     $sql = '(' . $field . " NOT IN ('0', $emptystring) AND $field2 IS NOT NULL)";
                 }
+                break;
+            case self::OP_IS_GREATER:
+                if ($istext) {
+                    $sql = "$field > " . self::unique_sql_parameter($params, $value);
+                break;
+            case self::OP_IS_SMALLER:
+                if ($istext) {
+                    $sql = "$field < " . self::unique_sql_parameter($params, $value);
                 break;
         }
         return array($sql, $params);
