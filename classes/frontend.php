@@ -44,18 +44,18 @@ class frontend extends \core_availability\frontend {
             \section_info $section = null) {
         // Standard user fields.
         $standardfields = array(
-            'firstname' => get_user_field_name('firstname'),
-            'lastname' => get_user_field_name('lastname'),
-            'email' => get_user_field_name('email'),
-            'city' => get_user_field_name('city'),
-            'country' => get_user_field_name('country'),
-            'url' => get_user_field_name('url'),
-            'idnumber' => get_user_field_name('idnumber'),
-            'institution' => get_user_field_name('institution'),
-            'department' => get_user_field_name('department'),
-            'phone1' => get_user_field_name('phone1'),
-            'phone2' => get_user_field_name('phone2'),
-            'address' => get_user_field_name('address')
+            'firstname' => \core_user\fields::get_display_name('firstname'),
+            'lastname' => \core_user\fields::get_display_name('lastname'),
+            'email' => \core_user\fields::get_display_name('email'),
+            'city' => \core_user\fields::get_display_name('city'),
+            'country' => \core_user\fields::get_display_name('country'),
+            'url' => \core_user\fields::get_display_name('url'),
+            'idnumber' => \core_user\fields::get_display_name('idnumber'),
+            'institution' => \core_user\fields::get_display_name('institution'),
+            'department' => \core_user\fields::get_display_name('department'),
+            'phone1' => \core_user\fields::get_display_name('phone1'),
+            'phone2' => \core_user\fields::get_display_name('phone2'),
+            'address' => \core_user\fields::get_display_name('address')
         );
         \core_collator::asort($standardfields);
 
@@ -72,3 +72,4 @@ class frontend extends \core_availability\frontend {
                 self::convert_associative_array_for_js($customfields, 'field', 'display'));
     }
 }
+
